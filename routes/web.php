@@ -47,3 +47,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/variants/{id}', [ProductVariantController::class, 'update'])->name('variants.update');
     Route::delete('/variants/{id}', [ProductVariantController::class, 'destroy'])->name('variants.destroy');
 });
+
+
