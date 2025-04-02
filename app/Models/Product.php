@@ -30,4 +30,13 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class, 'product_id');
     }
+
+    public function getLowestPriceAttribute()
+    {
+        return $this->variants()->min('price');
+    }
+    public function getHighestPriceAttribute()
+    {
+        return $this->variants()->max('price');
+    }
 }

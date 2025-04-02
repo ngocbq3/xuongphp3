@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductVariantController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/about', function () {
     return "ABOUT PAGE";
@@ -48,4 +46,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/variants/{id}', [ProductVariantController::class, 'destroy'])->name('variants.destroy');
 });
 
-
+//Website front end
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
