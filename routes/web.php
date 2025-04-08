@@ -49,3 +49,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 //Website front end
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/detail/{id}', [ProductController::class, 'show'])->name('product.detail');
+
+//API lấy get-variant-price
+Route::get('/get-variant-price', [ProductController::class, 'getVariantPrice'])->name('get-variant-price');
