@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductVariantController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProfileController;
 
 Route::get('/about', function () {
     return "ABOUT PAGE";
@@ -53,3 +55,22 @@ Route::get('/detail/{id}', [ProductController::class, 'show'])->name('product.de
 
 //API lấy get-variant-price
 Route::get('/get-variant-price', [ProductController::class, 'getVariantPrice'])->name('get-variant-price');
+//Giỏ hàng
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+//Xem giỏ hàng
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+//Hiển thị form checkout
+Route::get('/checkout', [CartController::class, 'showCheckOut'])->name('cart.checkout');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
