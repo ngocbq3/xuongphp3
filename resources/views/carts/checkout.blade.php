@@ -20,17 +20,27 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="{{ Auth::user()->email }}">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="phone" class="form-label">Số điện thoại</label>
                         <input type="tel" class="form-control" id="phone" name="phone" required>
+                        @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="address" class="form-label">Địa chỉ nhận hàng</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
+                        <input type="text" class="form-control" id="address" name="address">
+                        @error('address')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">

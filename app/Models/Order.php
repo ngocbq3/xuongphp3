@@ -19,4 +19,9 @@ class Order extends Model
         'note',
         'pay_amount',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

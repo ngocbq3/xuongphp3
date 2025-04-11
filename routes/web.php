@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductVariantController;
 use App\Http\Controllers\CartController;
@@ -46,6 +47,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/variants/{id}/edit', [ProductVariantController::class, 'edit'])->name('variants.edit');
     Route::put('/variants/{id}', [ProductVariantController::class, 'update'])->name('variants.update');
     Route::delete('/variants/{id}', [ProductVariantController::class, 'destroy'])->name('variants.destroy');
+    //Đơn hàng
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
 });
 
 //Website front end
