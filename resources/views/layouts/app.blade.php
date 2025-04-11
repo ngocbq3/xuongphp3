@@ -24,6 +24,22 @@
                     <li class="nav-item"><a class="nav-link" href="#products">Sản Phẩm</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+                    <!-- Nếu người dùng đã đăng nhập -->
+                    @if (Auth::check())
+                        <li class="nav-item"><a class="nav-link" href="{{ route('cart.show') }}">Giỏ Hàng:
+                                {{ $cart_count ?? 0 }}</a></li>
+                        <li class="nav-item">
+                            <form class="d-inline" action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link"
+                                    style="padding: 0; color: white; text-decoration: none;">Đăng Xuất</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Đăng Ký</a></li>
+                    @endif
+
                 </ul>
             </div>
         </div>

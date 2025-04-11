@@ -55,13 +55,6 @@ Route::get('/detail/{id}', [ProductController::class, 'show'])->name('product.de
 
 //API lấy get-variant-price
 Route::get('/get-variant-price', [ProductController::class, 'getVariantPrice'])->name('get-variant-price');
-//Giỏ hàng
-Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
-//Xem giỏ hàng
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-//Hiển thị form checkout
-Route::get('/checkout', [CartController::class, 'showCheckOut'])->name('cart.checkout');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -71,6 +64,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Giỏ hàng
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+    //Xem giỏ hàng
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    //Hiển thị form checkout
+    Route::get('/checkout', [CartController::class, 'showCheckOut'])->name('cart.checkout');
+    //Thanh toán đơn hàng
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout.post');
 });
 
 require __DIR__ . '/auth.php';

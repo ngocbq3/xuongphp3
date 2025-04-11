@@ -16,6 +16,7 @@ class Order extends Model
         'total',
         'vorcher_code',
         'sale_price',
+        'note',
         'pay_amount',
     ];
 }
